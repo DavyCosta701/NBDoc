@@ -17,7 +17,7 @@ class _CleanInterface(StopWords):
             content: str = arch.read()
         self.content = content
 
-    def clean(self, language: str = None) -> list[str]:
+    def _cleaner(self, language: str = None) -> list[str]:
         self._extract()
 
         for char in self.characters:
@@ -32,6 +32,9 @@ class _CleanInterface(StopWords):
         true_wordlist = filter(lambda x: x != '', self.content)
 
         return list(true_wordlist)
+
+    def clean(self):
+        ...
 
 
 class _CleanPDF(_CleanInterface):
